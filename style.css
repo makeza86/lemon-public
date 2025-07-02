@@ -1,0 +1,27 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background: #f8f8f8;
+  color: #333;
+  text-align: center;
+}
+
+.container {
+  padding: 50px 20px;
+}
+
+h1 {
+  color: #FFB800;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #25D366;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  margin-top: 20px;
+  font-weight: bold;
+}
