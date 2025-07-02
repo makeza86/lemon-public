@@ -1,18 +1,107 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Lemon Mall</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lemon Mall — Главная</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #0f0f0f;
+      font-family: 'Montserrat', sans-serif;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+    .chat-box {
+      background: #1a1a1a;
+      border-radius: 12px;
+      max-width: 500px;
+      width: 100%;
+      padding: 1.5rem;
+      box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
+    }
+    .bot-message {
+      background: #2e2e2e;
+      padding: 1rem;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .option-button {
+      background: #ffd700;
+      color: #000;
+      padding: 0.75rem 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .option-button:hover {
+      background: #e6c200;
+    }
+    .response {
+      background: #333;
+      padding: 0.75rem 1rem;
+      border-radius: 10px;
+      margin-top: 0.5rem;
+    }
+    .whatsapp-btn {
+      display: block;
+      margin-top: 2rem;
+      padding: 1rem;
+      background: #25D366;
+      color: white;
+      text-align: center;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .whatsapp-btn:hover {
+      background: #1ebc59;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Добро пожаловать в Lemon Mall</h1>
-    <p>Это новый глобальный маркетплейс с большими возможностями для партнёров.</p>
-    <a href="https://wa.me/77001234567" class="btn" target="_blank">Написать в WhatsApp</a>
-    <br><br>
-    <a href="about.html">О нас</a>
+  <div class="chat-box">
+    <div class="bot-message">
+      🤖 Я — ИИ Lemon Mall. У тебя есть телефон? <br>
+      Значит, у тебя есть шанс стать совладельцем глобального маркетплейса.<br>
+      ⏳ <em>Шанс ограничен. Время пошло.</em>
+    </div>
+    <div class="options">
+      <button class="option-button" onclick="showResponse(1)">Что за проект?</button>
+      <button class="option-button" onclick="showResponse(2)">Как я могу зарабатывать?</button>
+      <button class="option-button" onclick="showResponse(3)">Что нужно делать?</button>
+    </div>
+    <div id="response" class="response" style="display: none;"></div>
+    <a href="https://wa.me/77001234567" class="whatsapp-btn">💬 Написать в WhatsApp</a>
   </div>
+
+  <script>
+    function showResponse(option) {
+      const response = document.getElementById('response');
+      response.style.display = 'block';
+      if (option === 1) {
+        response.innerHTML = `📦 Сейчас запускается новый маркетплейс. За ним — китайские заводы, логистика, тысячи люкс-товаров. Продвигать его поручено нам — через HUAGE.<br><br>🤝 Сейчас ты можешь стать партнёром. В будущем — совладельцем.`;
+      } else if (option === 2) {
+        response.innerHTML = `💸 Реферальный бонус — 20% с каждого входящего.<br>💎 5 человек на старте — ты уже отбил вложение.<br><br>📈 Построил сеть — зарабатываешь с каждой покупки внутри.<br><br>А потом? Акции. <strong>49% акций разделят те, кто в теме с самого начала.</strong>`;
+      } else if (option === 3) {
+        response.innerHTML = `🪙 Купить стартовую карту (от $200)<br>📚 Получить обучение, доступ и ИИ-ассистента<br>📡 Начать строить сеть с переливами и пассивом<br><br>Деньги — каждый день. Будущее — у тех, кто не ждёт.`;
+      }
+    }
+  </script>
 </body>
 </html>
