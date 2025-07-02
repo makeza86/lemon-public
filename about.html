@@ -29,11 +29,15 @@
       padding: 3rem 1rem;
     }
     h1, h2 {
-      color: #00bfff; /* яркий синий */
+      color: #00bfff;
     }
     .highlight {
       color: #ffd700;
       font-weight: bold;
+    }
+    .gold-icon {
+      color: #ffd700;
+      margin-right: 0.3em;
     }
     section {
       margin-bottom: 3rem;
@@ -44,11 +48,20 @@
       margin-top: 1rem;
     }
     ul {
-      padding-left: 1.2rem;
-      list-style: "\2726  "; /* ✦ символ */
+      padding-left: 0;
+      list-style: none;
     }
-    li {
+    ul li {
+      position: relative;
+      padding-left: 2em;
       margin-bottom: 0.5rem;
+    }
+    ul li::before {
+      content: "✦";
+      position: absolute;
+      left: 0;
+      color: #ffd700;
+      font-weight: bold;
     }
     .buttons {
       display: flex;
@@ -80,24 +93,24 @@
 </head>
 <body>
   <div class="wrapper">
-    <h1>✦ О НАС</h1>
+    <h1><span class="gold-icon">⚜</span> О НАС</h1>
 
     <section>
-      <h2>Добро пожаловать в мир <span class="highlight">LEMON MALL</span> — нового поколения онлайн-торговли</h2>
+      <h2><span class="gold-icon">◆</span> Добро пожаловать в мир <span class="highlight">LEMON MALL</span> — нового поколения онлайн-торговли</h2>
       <p>
         Мы — бизнес-партнёры международной маркетинговой компании <span class="highlight">HUAGE</span>, которая занимается продвижением нового китайского маркетплейса <span class="highlight">LEMON MALL</span> на территории стран СНГ.
       </p>
     </section>
 
     <section>
-      <h2>✦ Что такое <span class="highlight">LEMON MALL</span>?</h2>
+      <h2><span class="gold-icon">◆</span> Что такое <span class="highlight">LEMON MALL</span>?</h2>
       <p>
         Это глобальный онлайн-маркетплейс, где собраны тысячи люксовых товаров, автотоваров и высококачественной продукции, ранее поставляемой в США и Европу. Сейчас этот ассортимент открывается для Казахстана, России, Узбекистана и Кыргызстана.
       </p>
     </section>
 
     <section>
-      <h2>✦ Почему это важно сейчас?</h2>
+      <h2><span class="gold-icon">◆</span> Почему это важно сейчас?</h2>
       <p>
         На этапе запуска маркетплейс использует сетевую модель через <span class="highlight">HUAGE</span> — только в течение ближайших двух лет. Это уникальная возможность:
       </p>
@@ -112,7 +125,7 @@
     </section>
 
     <section>
-      <h2>✦ Как это работает?</h2>
+      <h2><span class="gold-icon">◆</span> Как это работает?</h2>
       <p>
         Чтобы стать партнёром <span class="highlight">HUAGE</span>, достаточно приобрести одну из бизнес-карт (с продукцией). После этого ты получаешь:
       </p>
@@ -128,7 +141,7 @@
     </section>
 
     <section>
-      <h2>✦ Хочешь узнать больше?</h2>
+      <h2><span class="gold-icon">◆</span> Хочешь узнать больше?</h2>
       <p>
         Просто напиши нам — мы расскажем всё лично и без давления. Это не обещание “быстрых денег”, а реальный бизнес с огромным потенциалом, который ты можешь построить сам — с нашей поддержкой.
       </p>
