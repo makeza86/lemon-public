@@ -186,7 +186,7 @@
         if (i < text.length) {
           element.textContent += text.charAt(i);
           i++;
-          setTimeout(type, 150);  // Печать с замедленной скоростью (150 мс)
+          setTimeout(type, 100);  // Печать с замедленной скоростью (150 мс)
         } else {
           callback && callback();
         }
