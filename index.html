@@ -21,7 +21,7 @@
       content: "";
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background-image: radial-gradient(#ffd70044 1px, transparent 1px);
+      background-image: radial-gradient(#ffd70066 1px, transparent 1px);
       background-size: 20px 20px;
       z-index: 0;
     }
@@ -69,11 +69,10 @@
     }
 
     .ai-text {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       padding: 0 1rem;
       margin-bottom: 2rem;
       min-height: 80px;
-      border-right: 2px solid #00bfff;
       white-space: normal;
       overflow-wrap: break-word;
     }
@@ -150,7 +149,7 @@
         if (i < text.length) {
           element.textContent += text.charAt(i);
           i++;
-          setTimeout(type, 45);
+          setTimeout(type, 65);
         } else {
           callback && callback();
         }
