@@ -34,48 +34,38 @@
     }
     .ai-voice {
       position: relative;
-      width: 160px;
-      height: 160px;
+      width: 180px;
+      height: 180px;
       margin: 0 auto 2rem;
       border-radius: 50%;
-      background: radial-gradient(circle, #002b60 20%, #001a33);
-      box-shadow: 0 0 25px #00bfff99, 0 0 60px #0077ff88, inset 0 0 20px #00bfff66;
+      background: #001f3f;
       display: flex;
       align-items: center;
       justify-content: center;
-      animation: voiceGlow 3s ease-in-out infinite;
+      box-shadow: 0 0 40px #0074d9cc, inset 0 0 20px #0074d9aa;
     }
-
-    .waveform {
+    .wave {
       width: 100px;
-      height: 40px;
+      height: 60px;
       display: flex;
-      justify-content: space-between;
+      justify-content: space-around;
       align-items: center;
     }
-
-    .waveform span {
+    .wave span {
       display: block;
       width: 6px;
-      height: 100%;
+      height: 20px;
       background: #00bfff;
       animation: wave 1s infinite ease-in-out;
     }
-
-    .waveform span:nth-child(1) { animation-delay: 0s; }
-    .waveform span:nth-child(2) { animation-delay: 0.1s; }
-    .waveform span:nth-child(3) { animation-delay: 0.2s; }
-    .waveform span:nth-child(4) { animation-delay: 0.3s; }
-    .waveform span:nth-child(5) { animation-delay: 0.4s; }
+    .wave span:nth-child(2) { animation-delay: 0.1s; }
+    .wave span:nth-child(3) { animation-delay: 0.2s; }
+    .wave span:nth-child(4) { animation-delay: 0.3s; }
+    .wave span:nth-child(5) { animation-delay: 0.4s; }
 
     @keyframes wave {
-      0%, 100% { transform: scaleY(1); }
-      50% { transform: scaleY(2); }
-    }
-
-    @keyframes voiceGlow {
-      0%, 100% { box-shadow: 0 0 25px #00bfff99, 0 0 60px #0077ff88, inset 0 0 20px #00bfff66; }
-      50% { box-shadow: 0 0 40px #00ccffcc, 0 0 90px #0099ffcc, inset 0 0 30px #00ccffaa; }
+      0%, 100% { height: 20px; }
+      50% { height: 40px; }
     }
 
     .ai-text {
@@ -123,67 +113,50 @@
 <body>
   <div class="container">
     <div class="ai-voice">
-      <div class="waveform">
+      <div class="wave">
         <span></span><span></span><span></span><span></span><span></span>
       </div>
     </div>
-    <div class="ai-text" id="ai-text">Добро пожаловать в Lemon Mall — ваш шанс начать бизнес с ИИ!</div>
+    <div class="ai-text" id="ai-text">Здравствуйте. Я — ваш личный ИИ-ассистент. Я помогаю людям улучшить качество жизни. Интересно?</div>
     <div class="buttons" id="buttons">
-      <button class="btn" onclick="nextStep(1)">👉 Начать</button>
+      <button class="btn" onclick="nextStep(1)">Интересно</button>
+      <button class="btn" onclick="nextStep(1)">Слушаю</button>
     </div>
     <a href="about.html" class="about-link">Узнать больше о нас</a>
   </div>
 
   <script>
     const steps = [
-      {
-        text: "Привет! Ты готов узнать, как зарабатывать с Lemon Mall?",
-        buttons: [
-          { label: "Да, интересно!", next: 2 },
-          { label: "А что это вообще?", next: 2 }
-        ]
-      },
-      {
-        text: "Отлично! Lemon Mall — это новый глобальный маркетплейс, а мы — первые партнёры!",
-        buttons: [
-          { label: "Что нужно делать?", next: 3 }
-        ]
-      },
-      {
-        text: "Всё просто: ты покупаешь бизнес-карту, получаешь продукцию и начинаешь строить свою сеть.",
-        buttons: [
-          { label: "Сколько можно заработать?", next: 4 }
-        ]
-      },
-      {
-        text: "Доход начинается с первого дня! Плюс ты получаешь шанс на акции маркетплейса.",
-        buttons: [
-          { label: "Хочу подробнее", next: 5 }
-        ]
-      },
-      {
-        text: "Напиши нам в WhatsApp — мы всё расскажем лично, быстро и без давления.",
-        buttons: [
-          { label: "📲 Перейти в WhatsApp", link: "https://wa.me/77001234567", className: "whatsapp" }
-        ]
-      }
+      { text: "Иногда в жизни появляется шанс, который видят не все. Вы только что его заметили.", buttons: ["Что за шанс?", "Продолжай"] },
+      { text: "На горизонте — проект, о котором пока знает меньше 1% людей. Но скоро об этом заговорят все.", buttons: ["Это секрет?", "В чём суть?"] },
+      { text: "Это новый маркетплейс — LEMON MALL. Он запускается на территории СНГ. И у вас есть шанс войти как партнёр.", buttons: ["Партнёр — это как?", "И что мне с этого?"] },
+      { text: "Вы не просто пользуетесь платформой. Вы зарабатываете. С каждого заказа — часть идёт вам.", buttons: ["А если никто не покупает?", "Это сетевой?"] },
+      { text: "Лучшие партнёры получат акции. Это как если бы вы вошли в Alibaba — до того, как она стала мировой.", buttons: ["Это реально?", "Как попасть в число лучших?"] },
+      { text: "Старт — с бизнес-карты. Вы получаете продукцию, доступ к системе, обучение и ИИ-ассистента.", buttons: ["Дорого?", "Что за продукция?"] },
+      { text: "Опыт не важен. Вы не один. Система работает, даже если вы начинаете с нуля.", buttons: ["Мне подходит", "Сомневаюсь…"] },
+      { text: "Скоро регистрация станет обычной — как в любом магазине. Но сейчас вы можете зайти как партнёр, пока другие просто смотрят.", buttons: ["Я не хочу упустить шанс", "Что дальше?"] },
+      { text: "Этот формат будет доступен только 2 года. Потом вход закроется. Всё решает момент, в который вы действуете.", buttons: ["Хочу действовать", "Почти решился"] },
+      { text: "Вы сейчас среди первых. Тех, кто узнаёт до рекламы. До шума. До толпы.", buttons: ["Мне это нравится", "Покажи, как начать"] },
+      { text: "Свяжитесь с нашим партнёром прямо сейчас. Получите все детали и вход до того, как начнётся массовый запуск.", buttons: ["📲 Написать в WhatsApp"] }
     ];
 
-    function nextStep(stepIndex) {
-      const step = steps[stepIndex - 1];
+    let stepIndex = 0;
+    function nextStep(index) {
+      const step = steps[stepIndex++];
       document.getElementById("ai-text").textContent = step.text;
-      const btnContainer = document.getElementById("buttons");
-      btnContainer.innerHTML = "";
-      step.buttons.forEach(btn => {
-        const el = document.createElement("button");
-        el.className = "btn" + (btn.className ? ` ${btn.className}` : "");
-        el.textContent = btn.label;
-        if (btn.link) {
-          el.onclick = () => window.location.href = btn.link;
+      const btns = document.getElementById("buttons");
+      btns.innerHTML = "";
+      step.buttons.forEach(label => {
+        const btn = document.createElement("button");
+        btn.className = "btn";
+        btn.textContent = label;
+        if (label.includes("WhatsApp")) {
+          btn.classList.add("whatsapp");
+          btn.onclick = () => window.location.href = "https://wa.me/77001234567";
         } else {
-          el.onclick = () => nextStep(btn.next);
+          btn.onclick = () => nextStep();
         }
-        btnContainer.appendChild(el);
+        btns.appendChild(btn);
       });
     }
   </script>
