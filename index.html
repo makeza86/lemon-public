@@ -21,7 +21,7 @@
       content: "";
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background-image: radial-gradient(#ffd70055 1px, transparent 1px);
+      background-image: radial-gradient(#ffd70044 1px, transparent 1px);
       background-size: 20px 20px;
       z-index: 0;
     }
@@ -69,25 +69,13 @@
     }
 
     .ai-text {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       padding: 0 1rem;
       margin-bottom: 2rem;
-      min-height: 60px;
-      overflow: hidden;
+      min-height: 80px;
       border-right: 2px solid #00bfff;
-      white-space: nowrap;
-      width: 0;
-      animation: typing 3s steps(60, end) forwards, blink 0.7s step-end infinite;
-    }
-
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 100% }
-    }
-
-    @keyframes blink {
-      0%, 100% { border-color: transparent }
-      50% { border-color: #00bfff; }
+      white-space: normal;
+      overflow-wrap: break-word;
     }
 
     .buttons {
@@ -133,16 +121,14 @@
         <span></span><span></span><span></span><span></span><span></span>
       </div>
     </div>
-    <div class="ai-text" id="ai-text">Здравствуйте. Я — ваш личный ИИ-ассистент. Я помогаю людям улучшить качество жизни. Интересно?</div>
-    <div class="buttons" id="buttons">
-      <button class="btn" onclick="nextStep(1)">Интересно</button>
-      <button class="btn" onclick="nextStep(1)">Слушаю</button>
-    </div>
+    <div class="ai-text" id="ai-text"></div>
+    <div class="buttons" id="buttons"></div>
     <a href="about.html" class="about-link">Узнать больше о нас</a>
   </div>
 
   <script>
     const steps = [
+      { text: "Здравствуйте. Я — ваш личный ИИ-ассистент. Я помогаю людям улучшить качество жизни. Интересно?", buttons: ["Интересно", "Слушаю"] },
       { text: "Иногда в жизни появляется шанс, который видят не все. Вы только что его заметили.", buttons: ["Что за шанс?", "Продолжай"] },
       { text: "На горизонте — проект, о котором пока знает меньше 1% людей. Но скоро об этом заговорят все.", buttons: ["Это секрет?", "В чём суть?"] },
       { text: "Это новый маркетплейс — LEMON MALL. Он запускается на территории СНГ. И у вас есть шанс войти как партнёр.", buttons: ["Партнёр — это как?", "И что мне с этого?"] },
@@ -157,29 +143,44 @@
     ];
 
     let stepIndex = 0;
-    function nextStep(index) {
+    function typeText(element, text, callback) {
+      let i = 0;
+      element.textContent = "";
+      function type() {
+        if (i < text.length) {
+          element.textContent += text.charAt(i);
+          i++;
+          setTimeout(type, 25);
+        } else {
+          callback && callback();
+        }
+      }
+      type();
+    }
+
+    function nextStep(start = 0) {
       const step = steps[stepIndex++];
       const aiText = document.getElementById("ai-text");
-      aiText.style.animation = "none";
-      void aiText.offsetWidth;
-      aiText.textContent = step.text;
-      aiText.style.animation = "typing 3s steps(60, end) forwards, blink 0.7s step-end infinite";
-
       const btns = document.getElementById("buttons");
+      aiText.textContent = "";
       btns.innerHTML = "";
-      step.buttons.forEach(label => {
-        const btn = document.createElement("button");
-        btn.className = "btn";
-        btn.textContent = label;
-        if (label.includes("WhatsApp")) {
-          btn.classList.add("whatsapp");
-          btn.onclick = () => window.location.href = "https://wa.me/77001234567";
-        } else {
-          btn.onclick = () => nextStep();
-        }
-        btns.appendChild(btn);
+      typeText(aiText, step.text, () => {
+        step.buttons.forEach(label => {
+          const btn = document.createElement("button");
+          btn.className = "btn";
+          btn.textContent = label;
+          if (label.includes("WhatsApp")) {
+            btn.classList.add("whatsapp");
+            btn.onclick = () => window.location.href = "https://wa.me/77001234567";
+          } else {
+            btn.onclick = () => nextStep();
+          }
+          btns.appendChild(btn);
+        });
       });
     }
+
+    window.onload = () => nextStep();
   </script>
 </body>
 </html>
