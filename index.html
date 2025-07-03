@@ -153,12 +153,13 @@
 
       // Вставляем аудио для текущего шага
       const audio = document.createElement("audio");
-      audio.controls = true;
-
-      // Заменяем на правильные ссылки
-      audio.src = `https://raw.githubusercontent.com/makeza86/lemon-public/main/audio/step${stepIndex}.mp3`; // сгенерированные ссылки для каждого шага
+      audio.controls = false;  // Отключаем плеер, чтобы не был виден
+      audio.autoplay = true;    // Включаем авто воспроизведение
+      audio.src = `https://raw.githubusercontent.com/makeza86/lemon-public/main/audio/step${stepIndex}.mp3`; // Замените на правильную ссылку для каждого шага
 
       aiText.appendChild(audio);  // Вставляем аудио на страницу
+
+      // Печатаем текст с эффектом
       typeText(aiText, step.text, () => {
         step.buttons.forEach(label => {
           const btn = document.createElement("button");
@@ -170,7 +171,22 @@
       });
     }
 
-    window.onload = () => nextStep();
+    function typeText(element, text, callback) {
+      let i = 0;
+      element.textContent = "";
+      function type() {
+        if (i < text.length) {
+          element.textContent += text.charAt(i);
+          i++;
+          setTimeout(type, 65);
+        } else {
+          callback && callback();
+        }
+      }
+      type();
+    }
+
+    window.onload = () => nextStep();  // Начинаем с первого шага
   </script>
 </body>
 </html>
