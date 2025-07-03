@@ -146,6 +146,7 @@
     function speakText(text) {
       const speech = new SpeechSynthesisUtterance(text);
       speech.lang = "ru-RU"; // выбираем русский язык
+      speech.rate = 1; // скорость
       window.speechSynthesis.speak(speech);
     }
 
