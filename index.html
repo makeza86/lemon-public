@@ -144,6 +144,12 @@
 
     let stepIndex = 0;
 
+    function playAudio(stepIndex) {
+      const audio = new Audio();
+      audio.src = `https://raw.githubusercontent.com/makeza86/lemon-public/main/audio/step${stepIndex}.mp3`;  // Убедитесь, что путь правильный
+      audio.play();  // Воспроизведение аудио
+    }
+
     function nextStep() {
       const step = steps[stepIndex++];
       const aiText = document.getElementById("ai-text");
@@ -151,10 +157,8 @@
       aiText.textContent = "";
       btns.innerHTML = "";
 
-      // Вставляем аудио для текущего шага
-      const audio = new Audio();
-      audio.src = `https://raw.githubusercontent.com/makeza86/lemon-public/main/audio/step${stepIndex}.mp3`;  // Убедитесь, что путь правильный
-      audio.play();  // Проигрываем аудио автоматически
+      // Воспроизводим аудио
+      playAudio(stepIndex);
 
       // Печатаем текст с эффектом
       typeText(aiText, step.text, () => {
