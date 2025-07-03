@@ -152,12 +152,9 @@
       btns.innerHTML = "";
 
       // Вставляем аудио для текущего шага
-      const audio = document.createElement("audio");
-      audio.controls = false;  // Отключаем плеер
-      audio.autoplay = true;    // Автоматическое воспроизведение
-      audio.src = `https://raw.githubusercontent.com/makeza86/lemon-public/main/audio/step${stepIndex}.mp3`; // Путь к аудиофайлу
-
-      aiText.appendChild(audio);  // Вставляем аудио на страницу
+      const audio = new Audio();
+      audio.src = `https://raw.githubusercontent.com/makeza86/lemon-public/main/audio/step${stepIndex}.mp3`;  // Убедитесь, что путь правильный
+      audio.play();  // Проигрываем аудио автоматически
 
       // Печатаем текст с эффектом
       typeText(aiText, step.text, () => {
