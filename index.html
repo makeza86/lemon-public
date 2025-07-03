@@ -168,7 +168,12 @@
           const btn = document.createElement("button");
           btn.className = "btn";
           btn.textContent = label;
-          btn.onclick = () => nextStep();
+          if (label.includes("WhatsApp")) {
+            btn.classList.add("whatsapp");
+            btn.onclick = () => window.location.href = "https://wa.me/77476472119";  // Ваш номер WhatsApp
+          } else {
+            btn.onclick = () => nextStep();
+          }
           btns.appendChild(btn);
         });
       });
