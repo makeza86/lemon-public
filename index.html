@@ -143,13 +143,7 @@
     ];
 
     let stepIndex = 0;
-    function speakText(text) {
-      const speech = new SpeechSynthesisUtterance(text);
-      speech.lang = "ru-RU"; // выбираем русский язык
-      speech.rate = 1; // скорость
-      window.speechSynthesis.speak(speech);
-    }
-
+    
     function typeText(element, text, callback) {
       let i = 0;
       element.textContent = "";
@@ -163,10 +157,9 @@
         }
       }
       type();
-      speakText(text);  // озвучиваем текст после его появления
     }
 
-    function nextStep(start = 0) {
+    function nextStep() {
       const step = steps[stepIndex++];
       const aiText = document.getElementById("ai-text");
       const btns = document.getElementById("buttons");
@@ -177,12 +170,7 @@
           const btn = document.createElement("button");
           btn.className = "btn";
           btn.textContent = label;
-          if (label.includes("WhatsApp")) {
-            btn.classList.add("whatsapp");
-            btn.onclick = () => window.location.href = "https://wa.me/77001234567";
-          } else {
-            btn.onclick = () => nextStep();
-          }
+          btn.onclick = () => nextStep();
           btns.appendChild(btn);
         });
       });
