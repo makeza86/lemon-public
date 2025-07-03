@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lemon Mall — Главная</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     body {
       margin: 0;
@@ -21,7 +21,7 @@
       content: "";
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background-image: radial-gradient(#ffd70088 1px, transparent 1px);
+      background-image: radial-gradient(#ffd70044 1px, transparent 1px);
       background-size: 20px 20px;
       z-index: 0;
     }
@@ -73,7 +73,24 @@
       padding: 0 1rem;
       margin-bottom: 2rem;
       min-height: 60px;
+      font-family: 'Rubik Mono One', monospace;
+      overflow: hidden;
+      border-right: 2px solid #00bfff;
+      white-space: nowrap;
+      width: 0;
+      animation: typing 3s steps(40, end) forwards, blink 0.7s step-end infinite;
     }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink {
+      0%, 100% { border-color: transparent }
+      50% { border-color: #00bfff; }
+    }
+
     .buttons {
       display: flex;
       flex-direction: column;
@@ -130,9 +147,9 @@
       { text: "Иногда в жизни появляется шанс, который видят не все. Вы только что его заметили.", buttons: ["Что за шанс?", "Продолжай"] },
       { text: "На горизонте — проект, о котором пока знает меньше 1% людей. Но скоро об этом заговорят все.", buttons: ["Это секрет?", "В чём суть?"] },
       { text: "Это новый маркетплейс — LEMON MALL. Он запускается на территории СНГ. И у вас есть шанс войти как партнёр.", buttons: ["Партнёр — это как?", "И что мне с этого?"] },
-      { text: "Вы не просто пользуетесь платформой. Вы зарабатываете. С каждого заказа — часть идёт вам.", buttons: ["А если никто не покупает?", "Это сетевой?"] },
+      { text: "Вы не просто пользуетесь платформой. Вы зарабатываете. С каждого заказа — часть идёт вам.", buttons: ["А если никто не покупает?", "Интересно"] },
       { text: "Лучшие партнёры получат акции. Это как если бы вы вошли в Alibaba — до того, как она стала мировой.", buttons: ["Это реально?", "Как попасть в число лучших?"] },
-      { text: "Старт — с бизнес-карты. Вы получаете продукцию, доступ к системе, обучение и ИИ-ассистента.", buttons: ["Дорого?", "Что за продукция?"] },
+      { text: "Старт — с бизнес-карты. Вы получаете продукцию, доступ к системе, обучение и ИИ-ассистента.", buttons: ["Что дальше?", "Это надолго?"] },
       { text: "Опыт не важен. Вы не один. Система работает, даже если вы начинаете с нуля.", buttons: ["Мне подходит", "Сомневаюсь…"] },
       { text: "Скоро регистрация станет обычной — как в любом магазине. Но сейчас вы можете зайти как партнёр, пока другие просто смотрят.", buttons: ["Я не хочу упустить шанс", "Что дальше?"] },
       { text: "Этот формат будет доступен только 2 года. Потом вход закроется. Всё решает момент, в который вы действуете.", buttons: ["Хочу действовать", "Почти решился"] },
@@ -143,7 +160,12 @@
     let stepIndex = 0;
     function nextStep(index) {
       const step = steps[stepIndex++];
-      document.getElementById("ai-text").textContent = step.text;
+      const aiText = document.getElementById("ai-text");
+      aiText.style.animation = "none";
+      void aiText.offsetWidth;
+      aiText.textContent = step.text;
+      aiText.style.animation = "typing 3s steps(40, end) forwards, blink 0.7s step-end infinite";
+
       const btns = document.getElementById("buttons");
       btns.innerHTML = "";
       step.buttons.forEach(label => {
