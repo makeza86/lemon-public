@@ -153,9 +153,9 @@
 
       // Вставляем аудио для текущего шага
       const audio = document.createElement("audio");
-      audio.controls = false;  // Отключаем плеер, чтобы не был виден
-      audio.autoplay = true;    // Включаем авто воспроизведение
-      audio.src = `https://raw.githubusercontent.com/makeza86/lemon-public/main/audio/step${stepIndex}.mp3`; // Замените на правильную ссылку для каждого шага
+      audio.controls = false;  // Отключаем плеер
+      audio.autoplay = true;    // Автоматическое воспроизведение
+      audio.src = `https://raw.githubusercontent.com/makeza86/lemon-public/main/audio/step${stepIndex}.mp3`; // Путь к аудиофайлу
 
       aiText.appendChild(audio);  // Вставляем аудио на страницу
 
