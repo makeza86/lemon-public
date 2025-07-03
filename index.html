@@ -143,21 +143,6 @@
     ];
 
     let stepIndex = 0;
-    
-    function typeText(element, text, callback) {
-      let i = 0;
-      element.textContent = "";
-      function type() {
-        if (i < text.length) {
-          element.textContent += text.charAt(i);
-          i++;
-          setTimeout(type, 65);
-        } else {
-          callback && callback();
-        }
-      }
-      type();
-    }
 
     function nextStep() {
       const step = steps[stepIndex++];
@@ -165,6 +150,15 @@
       const btns = document.getElementById("buttons");
       aiText.textContent = "";
       btns.innerHTML = "";
+
+      // Вставляем аудио для текущего шага
+      const audio = document.createElement("audio");
+      audio.controls = true;
+
+      // Заменяем на правильные ссылки
+      audio.src = `https://raw.githubusercontent.com/makeza86/lemon-public/main/audio/step${stepIndex}.mp3`; // сгенерированные ссылки для каждого шага
+
+      aiText.appendChild(audio);  // Вставляем аудио на страницу
       typeText(aiText, step.text, () => {
         step.buttons.forEach(label => {
           const btn = document.createElement("button");
