@@ -151,6 +151,24 @@
       audio.play();  // Воспроизведение аудио
     }
 
+    // Проверка на сохранение в sessionStorage
+    if (!sessionStorage.getItem("audioPlayed")) {
+      // Если пользователь не был на странице раньше, мы покажем кнопку для начала
+      document.addEventListener("DOMContentLoaded", function() {
+        const startButton = document.createElement("button");
+        startButton.textContent = "Начать";
+        startButton.className = "btn";
+        startButton.onclick = function() {
+          sessionStorage.setItem("audioPlayed", "true");  // Сохраняем состояние в sessionStorage
+          nextStep();  // Переход к первому шагу и запуск аудио
+        };
+        document.body.appendChild(startButton); // Добавляем кнопку на страницу
+      });
+    } else {
+      // Если аудио уже играло (пользователь был на странице), сразу запускаем первый шаг
+      window.onload = () => nextStep();
+    }
+
     // Функция для перехода к следующему шагу
     function nextStep() {
       const step = steps[stepIndex++];
@@ -159,10 +177,8 @@
       aiText.textContent = "";
       btns.innerHTML = "";
 
-      // Воспроизведение аудио при клике
-      if (stepIndex === 1) { // Первая кнопка будет инициировать аудио
-        playAudio(stepIndex);
-      }
+      // Воспроизведение аудио
+      playAudio(stepIndex);
 
       // Печатаем текст с эффектом
       typeText(aiText, step.text, () => {
@@ -190,9 +206,6 @@
       }
       type();
     }
-
-    // Запуск с первого шага
-    window.onload = () => nextStep();  // Начинаем с первого шага
   </script>
 </body>
 </html>
